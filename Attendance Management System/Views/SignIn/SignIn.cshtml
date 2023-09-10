@@ -1,0 +1,37 @@
+﻿@model Attendance_Management_System.Models.SignInViewModel
+@{
+    Layout = "~/Views/Shared/_SignInLayout.cshtml";
+}
+
+<link href="~/css/SignIn.css" rel="stylesheet" />
+<form method="post" action="SignIn">
+    <div class="Container">
+        <h2> Sign In </h2><br/>
+        @using (Html.BeginForm("signIn", "SignIn", FormMethod.Post))
+        {
+            if (ViewBag.LoginStatus != null)
+            {
+                if (ViewBag.LoginStatus == 0)
+                {
+                    <div class="alert alert-danger">Invalid Login Details</div>
+                }
+            }
+
+            <div>
+                <label>User Name</label>
+                <input type="text" class="Name" asp-for="userName" />
+            </div>
+
+            <br />
+            <div>
+                <label>Password</label>
+                <input type="password" class="Passward" asp-for="password" />
+            </div>
+
+            <br />
+
+            <input type="submit" value="SIGN IN" />
+        }
+        
+    </div>
+</form>

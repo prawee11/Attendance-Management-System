@@ -1,0 +1,22 @@
+﻿@model Attendance_Management_System.Models.UserPrivilegeViewModel
+@{
+}
+<link href="~/css/UserPrivilage.css" rel="stylesheet" />
+<form method="post" action="UserPrivilege">
+    <div class="Container">
+        <h2>User Privilege</h2><br />
+             
+        User Id<input type="text" asp-for="userId" /><br /><br />
+
+        Privilage Name
+        <select name="level" id="level">
+            <option value="">Select Level</option>
+            @foreach (string privilegeName in ViewBag.PrivilegeNames)
+            {
+                <option value="@privilegeName">@privilegeName</option>
+            }
+        </select><br /><br />
+
+        <input type="submit" value="SUBMIT" />
+    </div>
+</form>

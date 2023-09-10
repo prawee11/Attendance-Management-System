@@ -1,0 +1,180 @@
+﻿@model List<ApprovalReportViewModel>
+@{
+}
+<link href="~/css/Approval.css" rel="stylesheet" />
+@*<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.3/jspdf.umd.min.js"></script>*@
+<script src="~/js/jspdf.umd.min.js" ></script>
+<center>
+    <caption><h3>View Card Approval</h3></caption>
+    <form method="post" action="@Url.Action("DownloadExcel", "ApprovalReport")">
+        <table id="approvalTable" border="1" cellpadding="5" cellspacing="15">
+            <tr>
+                <th>SId</th>
+                <th>Employee Name</th>
+                <th>Total Attendance</th>
+                <th>Special Details</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td><input type="text" name="SIds" value="@item.SId" readonly class="editable-field" /></td>
+                    <td><input type="text" name="EmployeeNames" value="@item.EmployeeName" readonly class="editable-field" /></td>
+                    <td><input type="text" name="Counts" value="@item.Count" readonly class="editable-field" /></td>
+                    <td><input type="text" name="SpecialDetails" value="@item.SpecialDetails" readonly class="editable-field" /></td>
+                </tr>
+            }
+        </table>
+        <br /><br />
+        <input type="button" value="UPDATE" onclick="enableEdit()" />&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="submit" value="DOWNLOAD" />
+    </form>
+</center>
+
+<script>
+    function enableEdit() {
+        var fields = document.getElementsByClassName('editable-field');
+        for (var i = 0; i < fields.length; i++) {
+            fields[i].readOnly = !fields[i].readOnly;
+            fields[i].classList.toggle('editable');
+        }
+    }
+</script>
+
+
+
+@*<center>
+    <caption><h3><u>View Card Approval</u></h3></caption>
+    <table id="approvalTable" border="1" cellpadding="5" cellspacing="15">
+        <tr>
+            <th>SId</th>
+            <th>Employee Name</th>
+            <th>Total Attendance</th>
+            <th>Special Details</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            @*<tr>
+                <td>@item.SId</td>
+                <td>@item.EmployeeName </td>
+                <td>@item.Count  </td>
+                <td>@item.SpecialDetails </td>
+            </tr>
+            <tr>
+                <td>@item.SId</td>
+                <td><input type="text" value="@item.EmployeeName" readonly class="editable-field" /></td>
+                <td><input type="text" value="@item.Count" readonly class="editable-field" /></td>
+                <td><input type="text" value="@item.SpecialDetails" readonly class="editable-field" /></td>
+            </tr>
+        }
+    </table>
+    <br /><br />
+    <input type="button" value="UPDATE" onclick="enableEdit()" />&nbsp;&nbsp;&nbsp;&nbsp;
+    <input type="button" value="DOWNLOAD" onclick="downloadExcel()" />
+</center>
+
+<script>
+    function enableEdit() {
+        var fields = document.getElementsByClassName('editable-field');
+        for (var i = 0; i < fields.length; i++) {
+            fields[i].readOnly = !fields[i].readOnly;
+            fields[i].classList.toggle('editable');
+        }
+    }
+
+    function downloadExcel() {
+        var table = document.getElementById('approvalTable');
+        var rows = [];
+
+        for (var i = 0; i < table.rows.length; i++) {
+            var rowData = [];
+            for (var j = 0; j < table.rows[i].cells.length; j++) {
+                rowData.push(table.rows[i].cells[j].innerText);
+            }
+            rows.push(rowData);
+        }
+
+        var csvContent = "data:text/csv;charset=utf-8,";
+
+        rows.forEach(function (rowArray) {
+            var row = rowArray.join(",");
+            csvContent += row + "\r\n";
+        });
+
+        var encodedUri = encodeURI(csvContent);
+        var link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", "approvalTable.csv");
+        document.body.appendChild(link);
+        link.click();
+    }
+</script>*@
+
+
+
+@*<center>
+    <caption><h3><u>View Card Approval</u></h3></caption>
+    <table id="approvalTable" border="1" cellpadding="5" cellspacing="15">
+        <tr>
+            <th>SId</th>
+            <th>Employee Name</th>
+            <th>Total Attendance</th>
+            <th>Special Details</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.SId</td>
+                <td><input type="text" value="@item.EmployeeName" readonly class="editable-field" /></td>
+                <td><input type="text" value="@item.Count" readonly class="editable-field" /></td>
+                <td><input type="text" value="@item.SpecialDetails" readonly class="editable-field" /></td>
+            </tr>
+        }
+    </table>
+    <br /><br />
+    <input type="submit" value="UPDATE" id="updateButton" />&nbsp;&nbsp;&nbsp;&nbsp;
+    <input type="submit" value="DOWNLOAD" id="downloadButton" />
+</center>
+<script>
+    document.getElementById('updateButton').addEventListener('click', function () {
+        // Toggle editing of the input fields
+        var fields = document.getElementsByClassName('editable-field');
+        for (var i = 0; i < fields.length; i++) {
+            fields[i].readOnly = !fields[i].readOnly;
+            fields[i].classList.toggle('editable');
+        }
+    });
+
+    document.getElementById('downloadButton').addEventListener('click', function () {
+        // Create a new jsPDF instance
+        var doc = new jsPDF();
+
+        // Get the table element
+        var table = document.getElementById('approvalTable');
+
+        // Generate the table data
+        var rows = [];
+        for (var i = 0; i < table.rows.length; i++) {
+            var rowData = [];
+            for (var j = 0; j < table.rows[i].cells.length; j++) {
+                rowData.push(table.rows[i].cells[j].innerText);
+            }
+            rows.push(rowData);
+        }
+
+        // Set the table column headers
+        var headers = ['SId', 'Employee Name', 'Total Attendance', 'Special Details'];
+
+        // Add the table to the PDF document
+        doc.autoTable({
+            head: [headers],
+            body: rows,
+            theme: 'striped'
+        });
+
+        // Save the PDF file
+        doc.save('approvalTable.pdf');
+    });
+</script>*@
+
+
+

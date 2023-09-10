@@ -1,0 +1,249 @@
+﻿.Container {
+    width: 1150px;
+    height: 1000px;
+    position: relative;
+    color: #0d5190;
+    font-size: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   /* font-weight: bold;*/
+    border-color: #0d5190;
+    border-style: solid;
+    padding-left: 80px;
+    padding-top: 50px;
+   /* margin-left: 150px;*/
+    border-width: 5px;
+}
+
+/*.Left {
+    width: 200px;
+    height: 380px;
+    background-color: white;
+    position: absolute;
+    text-align: center;
+    border-color: black;
+    border-style: ridge;
+    padding-top: 20px;
+}
+
+.Right {
+    width: 800px;
+    height: 360px;
+    background-color: white;
+    position: absolute;
+    margin-left: 200px;
+    padding-top: 40px;*/
+/*padding-left: 30px;*/
+/*font-size: 20px;
+    border-color: black;
+    border-style: ridge;
+}*/
+
+.Location {
+    width: 465px;
+    height: 40px;
+    font-size: 15px;
+    border-color: #50b952;
+    border-width: 2px;
+    color: #0d5190;
+}
+
+/*button {
+    width: 150px;
+    height: 50px;
+    font-size: 20px;
+}*/
+
+select {
+    width: 150px;
+    height: 40px;
+    font-size: 15px;
+    border-color: #50b952;
+    border-width: 2px;
+    color: #0d5190;
+}
+
+input[type="Submit"] {
+    width: 130px;
+    height: 40px;
+    border-radius: 15px;
+    font-size: 15px;
+    background-color: #50b952;
+    color: #0d5190;
+    font-weight: bold;
+    border: none;
+}
+
+input[type="button"] {
+    width: 130px;
+    height: 40px;
+    border-radius: 15px;
+    font-size: 15px;
+    background-color: #50b952;
+    color: #0d5190;
+    font-weight: bold;
+    border: none;
+}
+
+/*
+.Download {
+    margin-left: 450px;
+}*/
+
+.View {
+    margin-left: 250px;
+}
+
+
+
+
+
+/*-----------------toggle*-------------------------*/
+
+/*#app-cover
+{
+    display: table;
+    width: 600px;
+    margin: 80px auto;
+    counter-reset: button-counter;
+}
+
+.row
+{
+    display: table-row;
+}*/
+
+.toggle-button-cover {
+    display: table-cell;
+    position: relative;
+    /*width: 200px;
+    height: 140px;
+    box-sizing: border-box;*/
+}
+
+
+/*.button-cover
+{
+    height: 100px;
+    margin: 20px;
+    background-color: #fff;
+    box-shadow: 0 10px 20px -8px #c5d6d6;
+    border-radius: 4px;
+}*/
+
+.button-cover:before {
+    counter-increment: button-counter;
+    content: counter(button-counter);
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    color: #d7e3e3;
+    font-size: 12px;
+    line-height: 1;
+    padding: 5px;
+}
+
+.button-cover, .knobs, .layer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 5px;
+}
+
+.button {
+    position: relative;
+    top: 50%;
+    width: 300px; /*full button*/
+    height: 40px;
+    border-color: #50b952;
+    border-style: solid;
+    /*border-radius: 7px;*/
+    border-width: 2px;
+    /*margin: -20px auto 0 auto;*/
+    /*overflow: hidden;*/
+}
+/*
+.button.r, .button.r .layer
+{
+    border-radius: 100px;
+}
+
+.button.b2
+{
+    border-radius: 2px;
+}*/
+
+.checkbox {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 100;
+}
+
+.knobs {
+    z-index: 2;
+}
+
+.layer {
+    width: 100%;
+    background-color: white; /*right side color - before click*/
+    transition: 0.3s ease all;
+    z-index: 1;
+}
+
+/* Button 1 */
+#button-1 .knobs:before, #button-1 .knobs:after, #button-1 .knobs span {
+    position: absolute;
+    width: 160px; /*scroll button size*/
+    height: 38px;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1;
+    padding-top: 5px;
+    /*padding: 13px 4px;*/
+    /* border-radius: 7px;*/
+    transition: 0.3s ease all;
+    /*top: 4px;*/
+}
+
+#button-1 .knobs:before {
+    content: '';
+    /*left: 4px;*/
+    background-color: #50b952; /*left side color - after click*/
+}
+
+#button-1 .knobs:after {
+    content: 'Reject';
+    right: 4px; /*4px to right(Reject)*/
+    color: #0d5190; /*right side text color - before click*/
+}
+
+#button-1 .knobs span {
+    display: inline-block;
+    left: 3px; /*4px to left(Approve)*/
+    color: #0d5190; /*left side text color - before click*/
+    z-index: 1;
+}
+
+#button-1 .checkbox:checked + .knobs span {
+    color: #0d5190; /*left side text color - after click*/
+}
+
+#button-1 .checkbox:checked + .knobs:before {
+    left: 138px;
+    background-color: #50b952; /*right side color - after click*/
+}
+
+#button-1 .checkbox:checked + .knobs:after {
+    color: #0d5190; /*right side text color - after click*/
+}
+
+#button-1 .checkbox:checked ~ .layer {
+    background-color: white; /*left side color - after click*/
+}

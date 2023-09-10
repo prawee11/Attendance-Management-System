@@ -1,0 +1,35 @@
+﻿@model List<Attendance_Management_System.Models.Domain.SignUp>
+@{
+}
+
+<h3>Edit Sign Up</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Company Name</th>
+            <th>Company Address</th>
+            <th>Contact Person</th>
+            <th>Contact Number</th>
+            <th>User Name</th>
+            <th>Password</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.id</td>
+                <td>@item.companyName</td>
+                <td>@item.companyAddress</td>
+                <td>@item.contactPerson</td>
+                <td>@item.contactNumber</td>
+                <td>@item.userName</td>
+                <td>@item.password</td>
+                <td><a href="SignUp/View/@item.id">View</a></td>
+            </tr>
+        }
+    </tbody>
+</table>

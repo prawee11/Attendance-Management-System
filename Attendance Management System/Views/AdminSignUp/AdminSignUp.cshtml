@@ -1,0 +1,45 @@
+﻿@model Attendance_Management_System.Models.AdminSignUpViewModel
+@{
+}
+<link href="~/css/AdminSignUp.css" rel="stylesheet" />
+<form method="post" action="AdminSignUp" onsubmit="return validatePassword()">
+    <div class="Container">
+        <h2> Admin Sign Up </h2><br />
+
+        <div>
+            <label>User Name</label><br />
+            <input type="text" class="Company" asp-for="userName">
+        </div><br />
+
+        <div>
+            <label>Contact Number</label><br />
+            <input type="text" class="Address" asp-for="contactNumber">
+        </div><br />
+       
+        <div>
+            <label>Password</label><br />
+            <input type="password" class="Password" id="P1" asp-for="password">
+        </div><br />
+
+        <div>
+            <label>Confirm Password</label><br />
+            <input type="password" class="cPassword" id="P2">
+        </div><br />    
+
+        <input type="submit" value="SIGN UP" />
+    </div>
+
+</form>
+<script>
+    function validatePassword() {
+        var password = document.getElementById("P1").value;
+        var confirmPassword = document.getElementById("P2").value;
+
+        if (password !== confirmPassword) {
+            alert("Passwords do not match");
+            return false; // Prevent the form from submitting
+        }
+
+        return true; // Allow the form to submit
+    }
+</script>

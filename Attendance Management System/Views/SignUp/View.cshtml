@@ -1,0 +1,54 @@
+﻿@model Attendance_Management_System.Models.UpdateSignUpViewModel
+@{
+}
+<link href="~/css/SignUp.css" rel="stylesheet" />
+<form method="post" action="View" >
+    <div class="Container">
+        <h2>Update Sign Up </h2><br />
+
+        <div>
+            <label>Id</label><br />
+            <input type="text" class="Id" asp-for="id" readonly>
+        </div><br />
+
+        <div>
+            <label>Company Name</label><br />
+            <input type="text" class="Company" asp-for="companyName">
+        </div><br />
+
+        <div>
+            <label>Company Address</label><br />
+            <input type="text" class="Address" asp-for="companyAddress">
+        </div><br />
+
+        <div>
+            <label>Employee Name</label><br />
+            <input type="text" class="Name" asp-for="contactPerson">
+        </div><br />
+
+        <div>
+            <label>Contact Number</label><br />
+            <input type="text" class="Number" asp-for="contactNumber">
+        </div><br />
+
+        <div>
+            <label>User Name</label><br />
+            <input type="text" class="UserName" asp-for="userName">
+        </div><br />
+
+        <div>
+            <label>Password</label><br />
+            <input type="password" class="Password" id="P1" asp-for="password">
+        </div><br />
+
+        <div>
+            <label>Confirm Password</label><br />
+            <input type="password" class="cPassword" id="P2">
+        </div><br />
+
+        <input type="submit" value="UPDATE" />
+        <input type="submit" value="DELETE" asp-action="Delete" asp-controller="SignUp" />
+       
+    </div>
+
+</form>

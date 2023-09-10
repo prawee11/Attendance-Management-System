@@ -1,0 +1,19 @@
+﻿@model List<DailyReportViewModel>
+@{
+}
+<center>
+    <caption><h3>Daily Report</h3></caption>
+    <table border="1" cellpadding="5" cellspacing="15">
+        <tr>
+            <th>SId</th>
+            <th>Employee Name</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.SId</td>
+                <td>@item.EmployeeName</td>
+            </tr>
+        }
+    </table>
+</center>

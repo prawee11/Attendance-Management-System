@@ -1,0 +1,42 @@
+﻿@model Attendance_Management_System.Models.SecurityViewModel
+@{
+}
+
+<link href="~/css/Security.css" rel="stylesheet" />
+<form method="post" action="Security">
+    <div class="Container">
+        <h2>Add Security</h2><br />
+        <div>
+            <label>Location</label>
+            <select name="location" id="location">
+                <option value="">Select Location</option>
+                @foreach (string locationName in ViewBag.LocationNames)
+                {
+                    <option value="@locationName">@locationName</option>
+                }
+            </select>
+        </div><br />
+    
+         <div>
+            <label>Company Name</label>
+            <input type="text" class="Name" asp-for="companyName">
+        </div><br />
+
+        <div>
+            <label>Total Count</label>
+            <input type="text" class="Count" asp-for="tCount">
+        </div><br />
+
+        <div>
+            <label>Available</label>
+            <input type="text" class="Available" asp-for="available">
+        </div><br />
+
+        <div>
+            <label>Service Id  </label>
+            <input type="text" class="Id" asp-for="sId">
+        </div><br />
+   
+        <input type="submit" value="SUBMIT" />
+    </div>
+</form>

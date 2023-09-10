@@ -1,0 +1,116 @@
+﻿@model Attendance_Management_System.Models.ViewRecordViewModel
+@{
+}
+<link href="~/css/ViewRecord.css" rel="stylesheet" />
+@*<form method="post" action="ViewRecord">*@
+<form method="get" action="@Url.Action("YearlyReport","MonthlyReport","DailyReport", "ViewRecord")">
+        <div class="Container">
+        <h2>View Records</h2><br />
+                
+        Location
+        <select name="location" id="location" class="Location">
+            <option value="">Select Location</option>
+            @foreach (string locationName in ViewBag.LocationNames)
+            {
+                <option value="@locationName">@locationName</option>
+            }
+        </select> &nbsp;&nbsp; 
+
+        Company 
+        <select name="company" id="company" class="Company">
+            <option value="">Select Company</option>
+            @foreach (string companyName in ViewBag.CompanyNames)
+            {
+                <option value="@companyName">@companyName</option>
+            }
+        </select>
+        <br /><br />
+               
+        Year
+        <select name="year" id="year" class="Year">
+            <option value="">Select Year</option>
+            @foreach (string yearName in ViewBag.YearNames)
+            {
+                <option value="@yearName">@yearName</option>
+            }
+        </select>
+
+        Month
+        <select name="month" id="month" class="Month">
+            <option value="">Select Month</option>
+            @foreach (string monthName in ViewBag.MonthNames)
+            {
+                <option value="@monthName">@monthName</option>
+            }
+        </select>
+
+         Day
+        <select name="day" id="day" class="Day">
+            <option value="">Select Year</option>
+            @foreach (string dayName in ViewBag.DayNames)
+            {
+                <option value="@dayName">@dayName</option>
+            }
+        </select>
+            <br /><br /><br />
+        <input type="submit" value="Yearly Report" class="Submit1" id="yearlyReportButton" formaction="@Url.Action("YearlyReport", "YearlyReport")" />
+        <input type="submit" value="Monthly Report" class="Submit2" id="monthlyReportButton" formaction="@Url.Action("MonthlyReport", "MonthlyReport")" />
+        <input type="submit" value="Daily Report" class="Submit3" id="dailyReportButton" formaction="@Url.Action("DailyReport", "DailyReport")" />
+        </div>        
+</form>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Get references to the submit buttons
+        const yearlyReportButton = document.getElementById('yearlyReportButton');
+        const monthlyReportButton = document.getElementById('monthlyReportButton');
+        const dailyReportButton = document.getElementById('dailyReportButton');
+
+        // Disable all submit buttons initially
+        yearlyReportButton.disabled = true;
+        monthlyReportButton.disabled = true;
+        dailyReportButton.disabled = true;
+
+        // Add event listeners to the select boxes
+        const yearSelect = document.getElementById('year');
+        const monthSelect = document.getElementById('month');
+        const daySelect = document.getElementById('day');
+
+        yearSelect.addEventListener('change', handleSelectChange);
+        monthSelect.addEventListener('change', handleSelectChange);
+        daySelect.addEventListener('change', handleSelectChange);
+
+        function handleSelectChange() {
+            // Check the conditions to enable/disable the submit buttons
+            const yearValue = yearSelect.value;
+            const monthValue = monthSelect.value;
+            const dayValue = daySelect.value;
+
+            if (yearValue && !monthValue && !dayValue) {
+                // Only year is selected
+                yearlyReportButton.disabled = false;
+                monthlyReportButton.disabled = true;
+                dailyReportButton.disabled = true;
+            } else if (yearValue && monthValue && !dayValue) {
+                // Year and month are selected
+                yearlyReportButton.disabled = true;
+                monthlyReportButton.disabled = false;
+                dailyReportButton.disabled = true;
+            } else if (yearValue && monthValue && dayValue) {
+                // Year, month, and day are selected
+                yearlyReportButton.disabled = true;
+                monthlyReportButton.disabled = true;
+                dailyReportButton.disabled = false;
+            } else {
+                // None or incomplete selection
+                yearlyReportButton.disabled = true;
+                monthlyReportButton.disabled = true;
+                dailyReportButton.disabled = true;
+            }
+        }
+    });
+</script>
+
+
+
+

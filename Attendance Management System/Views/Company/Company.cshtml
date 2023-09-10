@@ -1,0 +1,62 @@
+﻿@model Attendance_Management_System.Models.CompanyViewModel
+@{
+}
+<link href="~/css/Company.css" rel="stylesheet" />
+<div class="Container">
+    <div class="Left">
+        <form method="post" action="DisableCompany">
+            <h2>Disable Company</h2><br />
+            <label>Name</label>
+            <select name="company" id="company">
+                <option value="">Select Company</option>
+                @foreach (string companyName in ViewBag.CompanyNames)
+                {
+                    <option value="@companyName">@companyName</option>
+                }
+            </select><br /><br />
+            <input type="submit" value="DISABLE" />
+        </form>
+        @*<form method="post" action="Company">
+            <h2>Add Company</h2><br />
+            <div>
+                <label>Name</label>
+                <input type="text" class="Company" asp-for="name" id="name"> <br />
+                <span asp-validation-for="name" class="text-danger"></span>
+            </div>
+            <br />
+
+            <div>
+                <label style="display: none;">Status</label>
+                <input type="text" class="Status" style="display: none;" value="1" asp-for="status">
+            </div>
+            <input type="submit" value="SUBMIT" />              
+        </form>*@
+    </div>
+    <div class="Right">
+        @*<form method="post" action="DisableCompany">
+            <h2>Disable Company</h2><br />
+            <label>Name</label>
+            <select name="company" id="company">
+                <option value="">Select Company</option>
+                @foreach (string companyName in ViewBag.CompanyNames)
+                {
+                    <option value="@companyName">@companyName</option>
+                }
+            </select><br /><br />
+            <input type="submit" value="DISABLE" />
+        </form>
+        <br />*@
+        <form method="post" action="EnableCompany">
+            <h2>Enable Company</h2><br />
+            <label>Name</label>
+            <select name="company1" id="company1">
+                <option value="">Select Company</option>
+                @foreach (string company in ViewBag.Company)
+                {
+                    <option value="@company">@company</option>
+                }
+            </select><br /><br />
+            <input type="submit" value="ENABLE" />
+        </form>
+    </div>
+</div>

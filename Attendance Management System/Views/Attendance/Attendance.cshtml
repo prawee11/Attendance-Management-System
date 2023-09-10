@@ -1,0 +1,206 @@
+﻿@model Attendance_Management_System.Models.AttendanceViewModel
+@{
+}
+@*<meta name="viewport" content="width=device-width" />*@
+<link href="~/css/Attendance.css" rel="stylesheet" />
+<form method="post" action="Attendance">
+    <H2>Attendance Marker</H2><br />
+    <table id="dynamicTable" class="table">
+        <thead>
+            <tr>
+                <th>SLT Location</th>
+                <th>Company Name</th>
+                <th>Service Id</th>
+                <th>Year</th>
+                <th>Month</th>
+                <th>Day</th>
+                <th>Designation</th>
+                <th>Employee Name</th>
+                <th>Arrival Date</th>
+                <th>Deppature Date</th>
+                <th>Shift Type</th>
+                <th>Arrival Time</th>
+                <th>Depature Time</th>
+                <th>Duration</th>
+                <th>Penalty</th>
+                <th>Remarks</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="text" class="form-control" asp-for="location"></td>
+                <td><input type="text" class="form-control" asp-for="company"></td>
+                <td><input type="text" class="form-control" asp-for="sId"></td>
+                <td><input type="text" class="form-control" asp-for="year"></td>
+                <td><input type="text" class="form-control" asp-for="month"></td>
+                <td><input type="text" class="form-control" asp-for="day"></td>
+                <td><input type="text" class="form-control" asp-for="designation"></td>
+                <td><input type="text" class="form-control" asp-for="employeeName"></td>
+                <td><input type="date" class="form-control" asp-for="arrivalDate"></td>
+                <td><input type="date" class="form-control" asp-for="departureDate"></td>
+                <td><input type="text" class="form-control" asp-for="shiftType"></td>
+                <td><input type="time" class="form-control" asp-for="arrivalTime"></td>
+                <td><input type="time" class="form-control" asp-for="departureTime"></td>
+                <td><input type="number" class="form-control" asp-for="duration"></td>
+                <td><input type="text" class="form-control" asp-for="penalty"></td>
+                <td><input type="text" class="form-control" asp-for="remarks"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <button type="button" id="addRowBtn">Add Row</button>
+    <button type="submit" class="btn btn-primary">Submit</button><br /><br /><br />
+</form>
+
+<button type="submit" class="btn btn-primary">
+        <form method="post" enctype="multipart/form-data" action="Import">
+            <div class="mb-3">
+                <label for="fileInput" class="form-label">Upload Excel File</label>
+                <input type="file" class="form-control" name="fileInput" id="fileInput">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </button>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var addRowBtn = document.getElementById("addRowBtn");
+            var dynamicTableBody = document.querySelector("#dynamicTable tbody");
+
+            addRowBtn.addEventListener("click", function () {
+                var newRow = document.createElement("tr");
+
+                newRow.innerHTML = `
+                                                <td><input type="text" class="form-control" asp-for="location"></td>
+                                                <td><input type="text" class="form-control" asp-for="company"></td>
+                                                <td><input type="text" class="form-control" asp-for="sId"></td>
+                                                <td><input type="text" class="form-control" asp-for="year"></td>
+                                                <td><input type="text" class="form-control" asp-for="month"></td>
+                                                <td><input type="text" class="form-control" asp-for="day"></td>
+                                                <td><input type="text" class="form-control" asp-for="designation"></td>
+                                                <td><input type="text" class="form-control" asp-for="employeeName"></td>
+                                                <td><input type="date" class="form-control" asp-for="arrivalDate"></td>
+                                                <td><input type="date" class="form-control" asp-for="departureDate"></td>
+                                                <td><input type="text" class="form-control" asp-for="shiftType"></td>
+                                                <td><input type="time" class="form-control" asp-for="arrivalTime"></td>
+                                                <td><input type="time" class="form-control" asp-for="departureTime"></td>
+                                                <td><input type="number" class="form-control" asp-for="duration"></td>
+                                                <td><input type="text" class="form-control" asp-for="penalty"></td>
+                                                <td><input type="text" class="form-control" asp-for="remarks"></td>
+                                            `;
+
+                dynamicTableBody.appendChild(newRow);
+            });
+        });
+    </script>
+
+
+    @*<div class="Container">
+        <h2>Add Attendance</h2><br />
+        <div>
+            <label>Location </label>
+            <select name="location" id="location" asp-for="location">
+                <option value="">Select Location</option>
+                @foreach (string locationName in ViewBag.LocationNames)
+                {
+                    <option value="@locationName">@locationName</option>
+                }
+            </select>
+        </div><br />
+        <div>
+            <label>Year  </label>
+            <input type="text" class="Year" asp-for="year">
+        </div><br />
+
+        <div>
+            <label>Month </label>
+            <input type="text" class="Month" asp-for="month">
+        </div><br />
+
+        <div>
+            <label>Day</label>
+            <input type="text" class="Day" asp-for="day">
+        </div><br />
+
+        <div>
+            <label>Service id  </label>
+            <input type="text" class="Id" asp-for="sId">
+            <input type="button" value="Fill" onclick="fillData()">
+        </div><br />
+
+        <div>
+            <label>Designation </label>
+            <input type="text" class="Designation" asp-for="designation" >
+        </div><br />
+
+        <div>
+            <label>Employee Name</label>
+            <input type="text" class="Name" asp-for="employeeName">
+        </div><br />
+
+        <div>
+            <label>Arrival Date</label>
+            <input type="date" class="ArrivalDate" asp-for="arrivalDate">
+        </div><br />
+
+        <div>
+            <label>Departure Date </label>
+            <input type="date" class="DepartureDate" asp-for="departureDate">
+        </div><br />
+
+        <div>
+            <label>Shift Type </label>
+            <input type="text" class="ShiftType" asp-for="shiftType">
+        </div><br />
+
+        <div>
+            <label>Arrival Time </label>
+            <input type="time" class="ArrivalTime" asp-for="arrivalTime">
+        </div><br />
+
+        <div>
+            <label>Departure Time </label>
+            <input type="time" class="DepartureTime" asp-for="departureTime">
+        </div><br />
+
+        <div>
+            <label>Duration </label>
+            <input type="text" class="Duration" asp-for="duration">
+        </div><br />
+
+        <div>
+            <label>Penalty </label>
+            <input type="text" class="Penalty" asp-for="penalty">
+        </div><br />
+
+        <div>
+            <label>Remarks</label>
+            <input type="text" class="Remarks" asp-for="remarks">
+        </div><br /><br />
+
+        <input type="submit" value="SUBMIT">
+
+    </div>
+</form>
+<script>
+    function fillData() {
+        var sId = $('.Id').val(); // Get the entered service id
+
+        // Fetch the data from the server
+        fetch(`/Attendance/GetRegistrationData?serviceId=${sId}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data) {
+                    $('.Designation').val(data.designation);
+                    $('.Name').val(data.name);
+                } else {
+                    alert('No registration data found for the given service ID.');
+                }
+            })
+            .catch(error => {
+                alert('An error occurred while retrieving data.');
+                console.log(error);
+            });
+    }
+</script>*@

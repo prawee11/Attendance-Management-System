@@ -1,0 +1,21 @@
+﻿@model Attendance_Management_System.Models.LocationViewModel
+@{
+}
+
+<link href="~/css/Location.css" rel="stylesheet" />
+<form method="post" action="Location">
+    <div class="Container">
+        <h2>Add Location</h2><br />
+        <div>
+            <label>Location</label><br />
+            <input type="text" class="Location" asp-for="location">
+        </div><br />
+
+        <div>
+            <label style="display: none;">Status</label>
+            <input type="text" class="Status" style="display: none;" value="1" asp-for="status">
+        </div><br />
+
+        <input type="submit" value="SUBMIT" />
+    </div>
+</form>

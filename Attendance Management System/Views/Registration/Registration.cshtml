@@ -1,0 +1,54 @@
+﻿@model Attendance_Management_System.Models.RegistrationViewModel
+@{
+}
+<link href="~/css/Registration.css" rel="stylesheet" />
+<form method="post" action="Registration">
+    <div class="Container">
+        <h2>Add Employee</h2><br />
+
+        <div>
+            <label>Service Id</label><br />
+            <input type="text" class="ServiceId" asp-for="serviceId">
+        </div><br />
+
+        <div>
+            <label>Designation</label><br />
+            <select name="Designation" class="Designation" asp-for="designation">
+                <option>Select Designation</option>
+                <option>OIC</option>
+                <option>JSO</option>
+                <option>LSO</option>
+            </select>
+        </div><br />
+
+        <div>
+            <label>Name</label><br />
+            <input type="text" class="Name" asp-for="name">
+        </div><br />
+
+        <div>
+            <label>Location</label><br />
+            <select name="Location" id="location" class="Location">
+                <option value="">Select Location</option>
+                @foreach (string locationName in ViewBag.LocationNames)
+                {
+                    <option value="@locationName">@locationName</option>
+                }
+            </select>
+        </div><br />     
+
+        <div>
+            <label>Company</label><br />
+            <select name="Company" class="Company" asp-for="company">                
+                <option value="">Select Company</option>
+                @foreach (string companyName in ViewBag.CompanyNames)
+                {
+                    <option value="@companyName">@companyName</option>
+                }
+            </select>
+        </div><br /><br />
+
+        <input type="submit" value="SUBMIT" />
+    </div>
+
+</form>
